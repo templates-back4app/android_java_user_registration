@@ -3,6 +3,7 @@ package com.example.android_user_registration;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.parse.ParseUser;
 
 public class LogoutActivity extends AppCompatActivity {
     Button logout;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +24,13 @@ public class LogoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logout);
 
         logout = findViewById(R.id.logout);
+        progressDialog = new ProgressDialog(LogoutActivity.this);
 
         logout.setOnClickListener(v -> {
+            progressDialog.show();
             // logging out of Parse
             ParseUser.logOutInBackground(e -> {
+                progressDialog.dismiss();
                 if (e == null)
                     showAlert("So, you're going...", "Ok...Bye-bye then");
 

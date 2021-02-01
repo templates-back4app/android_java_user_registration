@@ -43,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         signup.setOnClickListener(v -> {
-            if (password.getText().toString().equals(passwordagain.getText().toString()) && TextUtils.isEmpty(username.getText()))
+            if (password.getText().toString().equals(passwordagain.getText().toString()) && !TextUtils.isEmpty(username.getText().toString()))
                 signup(username.getText().toString(), password.getText().toString());
             else
                 Toast.makeText(this, "Make sure that the values you entered are correct.", Toast.LENGTH_SHORT).show();

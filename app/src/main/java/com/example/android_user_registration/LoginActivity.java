@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         ParseUser.logInInBackground(username, password, (parseUser, e) -> {
             progressDialog.dismiss();
             if (parseUser != null) {
-                showAlert("Sucessful Login", "Welcome back " + username + " !");
+                showAlert("Successful Login", "Welcome back " + username + " !");
             } else {
                 ParseUser.logOut();
                 Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
