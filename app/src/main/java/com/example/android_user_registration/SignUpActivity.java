@@ -22,7 +22,7 @@ import com.parse.SignUpCallback;
 public class SignUpActivity extends AppCompatActivity {
 
     private ImageView back;
-    private Button signup;
+    private Button signUp;
     private TextInputEditText username;
     private TextInputEditText password;
     private TextInputEditText passwordagain;
@@ -36,26 +36,24 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(SignUpActivity.this);
 
         back = findViewById(R.id.back);
-        signup = findViewById(R.id.signup);
+        signUp = findViewById(R.id.signup);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         passwordagain = findViewById(R.id.passwordagain);
 
 
-        signup.setOnClickListener(v -> {
+        signUp.setOnClickListener(v -> {
             if (password.getText().toString().equals(passwordagain.getText().toString()) && !TextUtils.isEmpty(username.getText().toString()))
-                signup(username.getText().toString(), password.getText().toString());
+                signUp(username.getText().toString(), password.getText().toString());
             else
                 Toast.makeText(this, "Make sure that the values you entered are correct.", Toast.LENGTH_SHORT).show();
         });
 
-        back.setOnClickListener(v -> {
-            finish();
-        });
+        back.setOnClickListener(v -> finish());
 
     }
 
-    private void signup(String username, String password) {
+    private void signUp(String username, String password) {
         progressDialog.show();
         ParseUser user = new ParseUser();
         // Set the user's username and password, which can be obtained by a forms
@@ -64,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
         user.signUpInBackground(e -> {
             progressDialog.dismiss();
             if (e == null) {
-                showAlert("Sucessful Sign Up ! You logged in...\n", "Welcome " + username + " !");
+                showAlert("Successful Sign Up ! You logged in...\n", "Welcome " + username + " !");
             } else {
                 ParseUser.logOut();
                 Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
